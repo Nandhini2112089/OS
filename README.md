@@ -238,9 +238,13 @@ docker commit [ options ] <container_id or name> <new_img_name>
 1.-a, --author  
 -Sets the author of the image (e.g., your name or email).  
 -docker commit -a "Author Name" <container_id> <new_image_name>
+
+
 2.-m, --message
 -Adds a commit message to describe what changes were made.
 -docker commit -m "Commit message" <container_id> <new_image_name>
+
+
 3.--pause
 -Pauses the container before committing.
 -By default, this is set to true.
@@ -274,25 +278,25 @@ docker commit [ options ] <container_id or name> <new_img_name>
 
 ---
 
-##**start**
+## **start**
 -Usage: Starts a stopped container.
 -docker start container_id_or_name
 
 ---
 
-##**rm**
+## **rm**
 -Usage: Removes a container.
 -docker rm container_id_or_name
 
 ---
 
-##**rmi**
+## **rmi**
 -Usage: Removes an image.
 -docker rmi image_id_or_name
 
 ---
 
-##**inspect**
+## **inspect**
 -Usage: Provides detailed information about containers, images, volumes, or networks.
 -docker inspect container_id_or_name
 
@@ -304,7 +308,7 @@ docker commit [ options ] <container_id or name> <new_img_name>
 
 ---
 
-##**push**
+## **push**
 
 -Usage :To upload Docker images from local machine to a Docker registry (e.g., Docker Hub or a private registry).
 -Generally use this command after we've built our own image and want to share it with others or deploy it on different machines.
