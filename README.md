@@ -230,5 +230,3 @@ A **Custom OS** is specifically built or modified to:
 To preserve changes made **inside a running container** (e.g., installed packages, config edits) without writing a Dockerfile.
 
 ---
-
-Let me know if you'd like a PDF version of this, a one-page summary, or visual diagrams for any section!
