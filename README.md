@@ -227,6 +227,87 @@ A **Custom OS** is specifically built or modified to:
 `docker commit` is used to save changes in a container by creating a new image from its current state.
 
 ### **Why Use It?**
-To preserve changes made **inside a running container** (e.g., installed packages, config edits) without writing a Dockerfile.
+You made changes inside a container (e.g., added a user, installed software, edited files).
+You want to save those changes so they don't get lost when the container exits.
+You want to create a custom image from an existing container setup.
+
+### **Syntax**
+docker commit [ options ] <container_id or name> <new_img_name>
+
+### **Options**
+1.-a, --author  
+-Sets the author of the image (e.g., your name or email).  
+-docker commit -a "Author Name" <container_id> <new_image_name>
+2.-m, --message
+-Adds a commit message to describe what changes were made.
+-docker commit -m "Commit message" <container_id> <new_image_name>
+3.--pause
+-Pauses the container before committing.
+-By default, this is set to true.
+-When the container is paused, it ensures the file system's state is consistent during the commit process.
+-docker commit --pause=false <container_id> <new_image_name>
+
+---
+
+## **Build**
+-Usage: Used to build an image from a Dockerfile.
+-docker build -t my-image
+
+---
+
+## **ps**
+-Usage: Lists the running containers.
+
+---
+
+
+## **ps -a**
+-Usage: Lists all containers, including stopped ones.
+-docker ps -a
+
+---
+
+## **stop**
+
+-Usage: Stops a running container.
+-docker stop container_id_or_name
+
+---
+
+##**start**
+-Usage: Starts a stopped container.
+-docker start container_id_or_name
+
+---
+
+##**rm**
+-Usage: Removes a container.
+-docker rm container_id_or_name
+
+---
+
+##**rmi**
+-Usage: Removes an image.
+-docker rmi image_id_or_name
+
+---
+
+##**inspect**
+-Usage: Provides detailed information about containers, images, volumes, or networks.
+-docker inspect container_id_or_name
+
+---
+
+##**pull**
+-Usage :To download Docker images from a registry (like Docker Hub or a private registry) to local machine.
+-docker pull <image_name>
+
+---
+
+##**push**
+
+-Usage :To upload Docker images from local machine to a Docker registry (e.g., Docker Hub or a private registry).
+-Generally use this command after we've built our own image and want to share it with others or deploy it on different machines.
+-docker push <image_name>
 
 ---
