@@ -236,19 +236,24 @@ docker commit [ options ] <container_id or name> <new_img_name>
 
 ### **Options**
 1.-a, --author  
--Sets the author of the image (e.g., your name or email).  
+-Sets the author of the image (e.g., your name or email). 
+
 -docker commit -a "Author Name" <container_id> <new_image_name>
 
 
 2.-m, --message
 -Adds a commit message to describe what changes were made.
+
 -docker commit -m "Commit message" <container_id> <new_image_name>
 
 
 3.--pause
 -Pauses the container before committing.
+
 -By default, this is set to true.
+
 -When the container is paused, it ensures the file system's state is consistent during the commit process.
+
 -docker commit --pause=false <container_id> <new_image_name>
 
 ---
@@ -302,7 +307,7 @@ docker commit [ options ] <container_id or name> <new_img_name>
 
 ---
 
-##**pull**
+## **pull**
 -Usage :To download Docker images from a registry (like Docker Hub or a private registry) to local machine.
 -docker pull <image_name>
 
