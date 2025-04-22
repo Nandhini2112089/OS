@@ -355,25 +355,34 @@ Orphan Process -	A process whose parent has died. It's adopted by init (PID 1).
 
 ### **nice**
 -The nice command is used to launch a process with a specified priority. Lower values represent higher priority.
+
 -Every process gets a "niceness" value ranging from -20 (very high priority) to 19 (very low priority).
 -The lower the nice value, the more CPU time the process gets.
 -The default nice value is 0.
 
 ### **renice**
 -The renice command enables to adjust the priority of a running process.
+
 -This can be useful for dynamically managing system resources based on changing requirements.
 
 ### **kill**
 -kill sends a signal to a process, most commonly used to terminate it.
+
 -kill -SIGNAL <PID>
+
 -Common signals:
+
 -9 SIGKILL: Forcefully kill the process.
+
 -15 SIGTERM: Politely ask the process to terminate (default).
+
 -1 SIGHUP: Restart the process (used with daemons).
 
 
 ### **killall**
+
 -Kills all processes with the specified name.
+
 -killall <process-name>
 
 ### **pgrep**
@@ -381,8 +390,10 @@ Orphan Process -	A process whose parent has died. It's adopted by init (PID 1).
 -pgrep <name>
 
 ### **jobs**
--Displays background and suspended jobs in shell session.
+-Displays background and suspended jobs in shell session
+
 -sleep 300 & (start a process in the background directly)
+
 -fg %1(bring it to the foreground)
 
 ### **lsof**
