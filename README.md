@@ -401,5 +401,41 @@ Orphan Process -	A process whose parent has died. It's adopted by init (PID 1).
 -lsof -p PID
 
 
+## **Palindrome Checker**
+**Updates the system package list** - dnf install python3 python3-pip gcc make -y
+python3 → for running Python apps
+pip → for installing Python packages
+gcc, make → needed for building Python binaries
+**To install Pyinstaller** - pip3 install pyinstaller
+
+**Create Project Structure** - mkdir -p project/{bin,lib,src}
+bin/ → Where the final binary file will go
+lib/ → For shared/helper code (not used much in this simple app)
+src/ → Where your main Python code will live
+
+**Create file: src/prime_finder.py**
+**Write Shell Script to Build the App** pyinstaller --onefile src/prime_finder.py --distpath bin --name prime_finder
+--onefile makes a single .exe-like binary
+--distpath bin tells it to put the final binary in the bin/ folder
+--name lets us name the binary
+** Make it executable** - chmod +x build.sh
+**Build the Application** ./build.sh
+dnf install iproute -y 
+dnf install openssh-clients -y
+zip -r project.zip *
+docker cp 13680f35beed:/project/project.zip C:\Users\sbalam387\Downloads\
+docker cp C:\Users\sbalam387\Downloads\project.zip b71dd895dcdd:/tmp/
+
+virtual environment for running into another terminal without installing any dependencies
+python3 -m venv venv_prime - create
+source venv_prime/bin/activate - activate
+pip install -r requirements.txt -Install dependencies
+../venv_prime/bin/python prime_finder.py - to run
+zip -r prime_package.zip prime_finder.py venv_prime - zip the file
+
+
+
+
+
 
 
