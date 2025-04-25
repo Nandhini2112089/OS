@@ -434,6 +434,10 @@ pip install -r requirements.txt -Install dependencies
 zip -r prime_package.zip prime_finder.py venv_prime - zip the file
 
 
+docker cp 13680f35beed:/dist/prime_finder C:\Users\sbalam387\Downloads\
+
+
+
 
 
 
