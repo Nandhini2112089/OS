@@ -401,40 +401,76 @@ Orphan Process -	A process whose parent has died. It's adopted by init (PID 1).
 -lsof -p PID
 
 
-## **Palindrome Checker**
-**Updates the system package list** - dnf install python3 python3-pip gcc make -y
-python3 → for running Python apps
-pip → for installing Python packages
-gcc, make → needed for building Python binaries
-**To install Pyinstaller** - pip3 install pyinstaller
 
-**Create Project Structure** - mkdir -p project/{bin,lib,src}
-bin/ → Where the final binary file will go
-lib/ → For shared/helper code (not used much in this simple app)
-src/ → Where your main Python code will live
+## **FAST API**
+**Step 1:Create Project Strcuture**
+cd C:\Users\sbalam387\Documents
+mkdir project1
+cd project1
+mkdir bin lib src
 
-**Create file: src/prime_finder.py**
-**Write Shell Script to Build the App** pyinstaller --onefile src/prime_finder.py --distpath bin --name prime_finder
---onefile makes a single .exe-like binary
---distpath bin tells it to put the final binary in the bin/ folder
---name lets us name the binary
-** Make it executable** - chmod +x build.sh
-**Build the Application** ./build.sh
-dnf install iproute -y 
-dnf install openssh-clients -y
-zip -r project.zip *
-docker cp 13680f35beed:/project/project.zip C:\Users\sbalam387\Downloads\
-docker cp C:\Users\sbalam387\Downloads\project.zip b71dd895dcdd:/tmp/
+**Step 2: Write Python file(password_checker.py)**
+from fastapi import FastAPI
+from pydantic import BaseModel
+import re
 
-virtual environment for running into another terminal without installing any dependencies
-python3 -m venv venv_prime - create
-source venv_prime/bin/activate - activate
-pip install -r requirements.txt -Install dependencies
-../venv_prime/bin/python prime_finder.py - to run
-zip -r prime_package.zip prime_finder.py venv_prime - zip the file
+app = FastAPI()
+
+class PasswordRequest(BaseModel):
+    password: str
+
+@app.post("/verify-password/")
+def verify_password(data: PasswordRequest):
+    password = data.password
+    if len(password) < 8 or len(password) > 20:
+        return {"status": "failed", "reason": "Password must be 8-20 characters."}
+    if not re.search(r"[A-Z]", password):
+        return {"status": "failed", "reason": "Password must contain at least one uppercase letter."}
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+        return {"status": "failed", "reason": "Password must contain at least one special character."}
+    return {"status": "success", "message": "Password is valid."}
+
+def main():
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8081)  # 🚨 USE PORT 8081
+
+if __name__ == "__main__":
+    main()
 
 
-docker cp 13680f35beed:/dist/prime_finder C:\Users\sbalam387\Downloads\
+**Step 3: Create build.sh**
+#!/bin/bash
+
+echo "Cleaning old builds..."
+rm -rf build dist
+rm -f bin/password_checker
+
+echo "Building FastAPI app into binary..."
+pyinstaller --onefile src/password_checker.py --distpath bin --name password_checker
+
+echo "Build complete! Binary saved in bin/password_checker"
+
+**Step 4 : Launch build container**
+docker run -it -v C:\Users\sbalam387\Documents\project1:/project rockylinux:9 bash
+(Inside Container)
+cd /project
+dnf update -y
+dnf install python3 python3-pip gcc make zip unzip -y
+pip3 install pyinstaller fastapi uvicorn pydantic
+chmod +x build.sh
+./build.sh
+
+**Step 5 : Run binary in another new container**
+docker run -it -v C:\Users\sbalam387\Documents\project1\bin:/binproject -p 8081:8081 rockylinux:9 bash
+(Inside Container)
+cd /binproject
+chmod +x password_checker
+./password_checker
+
+**Step 6 : Test**
+http://localhost:8081/verify-password/
+
+
 
 
 
