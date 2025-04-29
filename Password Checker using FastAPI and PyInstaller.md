@@ -64,21 +64,38 @@ dnf install python3 python3-pip gcc make zip unzip -y
 pip3 install pyinstaller fastapi uvicorn pydantic
 chmod +x build.sh
 ./build.sh
+Open browser and can test:
+```
+http://localhost:8081/verify-password/
+```
 ```
 
-### **Step 5: Run binary in another new container**
+### **Step 5: Zip the project1 folder**
+
+### **Step 6 : Create a fresh container**
 ```bash
-docker run -it -v C:\Users\sbalam387\Documents\project1\bin:/binproject -p 8081:8081 rockylinux:9 bash
+docker run -it --name apitest -p 8082:8081 rockylinux:9 bash
 ```
-(Inside Container)
+
+### **Step 7 :Copy ZIP to Container**
+
 ```bash
-cd /binproject
+docker cp C:\Users\sbalam387\Documents\project1.zip apitest:/root/
+docker exec -it apitest bash
+```
+
+### **Step 8 : Inside the Container – Unzip and Run**
+```bash
+cd /root
+dnf install unzip -y
+unzip password_checker.zip
 chmod +x password_checker
 ./password_checker
 ```
 
+
 ### **Step 6: Test**
 Open browser and go to:
 ```
-http://localhost:8081/verify-password/
+http://localhost:8082/verify-password/
 ```
