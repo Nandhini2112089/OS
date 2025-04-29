@@ -78,7 +78,7 @@ docker run -it --name apitest -p 8082:8081 rockylinux:9 bash
 ### **Step 7 :Copy ZIP to Container**
 
 ```bash
-docker cp C:\Users\sbalam387\Documents\project1.zip apitest:/root/
+docker cp C:\Users\sbalam387\Documents\project1\bin\password_checker.zip apitest:/root/
 docker exec -it apitest bash
 ```
 
