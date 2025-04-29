@@ -403,9 +403,7 @@ Orphan Process -	A process whose parent has died. It's adopted by init (PID 1).
 
 ---
 
-Here's your updated README file content, properly aligned for GitHub:
 
-```markdown
 ## **FAST API**
 
 ### **Step 1: Create Project Structure**
@@ -486,12 +484,12 @@ chmod +x password_checker
 ```
 
 ### **Step 6: Test**
-Open your browser and go to:
+Open browser and go to:
 ```
 http://localhost:8081/verify-password/
 ```
 
-Feel free to copy this into your README file on GitHub. Let me know if you need any more adjustments!
+
 
 
 
