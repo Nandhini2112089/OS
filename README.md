@@ -401,7 +401,7 @@ Orphan Process -	A process whose parent has died. It's adopted by init (PID 1).
 -lsof -p PID
 
 
-
+---
 ## **FAST API**
 **Step 1:Create Project Strcuture**
 cd C:\Users\sbalam387\Documents
