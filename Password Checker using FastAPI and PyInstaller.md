@@ -64,10 +64,8 @@ dnf install python3 python3-pip gcc make zip unzip -y
 pip3 install pyinstaller fastapi uvicorn pydantic
 chmod +x build.sh
 ./build.sh
-Open browser and can test:
-```
-http://localhost:8081/verify-password/
-```
+Open browser and can test:http://localhost:8081/verify-password/
+
 ```
 
 ### **Step 5: Zip the project1 folder**
